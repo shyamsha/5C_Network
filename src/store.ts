@@ -6,6 +6,9 @@ import { Reducer } from 'typesafe-actions';
 import { UserReposState } from './containers/repos/types';
 import { userReposReducer } from './containers/repos/reducers';
 import { userReposSaga } from './containers/repos/sagas';
+import { UserFlowersState } from './containers/repoDetails/types';
+import { userFlowersReducer } from './containers/repoDetails/reducers';
+import { userFlowersSaga } from './containers/repoDetails/sagas';
 
 
 // The top-level state object.
@@ -14,6 +17,7 @@ import { userReposSaga } from './containers/repos/sagas';
 // so we can ignore them here.
 export interface ApplicationState {
   userRepos:UserReposState;
+  userFlowers:UserFlowersState;
   router: RouterState<History.LocationState>
 }
 
@@ -28,6 +32,7 @@ export interface ConnectedReduxProps<A extends Action = AnyAction> {
 export const createRootReducer = (history: History) =>
   combineReducers({
     userRepos: userReposReducer as Reducer<UserReposState, AnyAction>,
+    userFlowers:userFlowersReducer as Reducer<UserFlowersState, AnyAction>,
     router: connectRouter(history)
   })
 
@@ -36,4 +41,5 @@ export const createRootReducer = (history: History) =>
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*
 export function* rootSaga() {
   yield all([fork(userReposSaga)])
+  yield all([fork(userFlowersSaga)])
 }

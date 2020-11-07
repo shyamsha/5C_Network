@@ -7,11 +7,13 @@ import AppNavigator from "./navigator/AppNavigator";
 import { ApplicationState } from "./store";
 import configureStore from "./configureStore";
 import { userReposInitialState } from "./containers/repos/reducers";
+import { userFlowersInitialState } from "./containers/repoDetails/reducers";
 
 const history = createBrowserHistory();
 
 const initialState: ApplicationState = {
   userRepos: userReposInitialState,
+  userFlowers:userFlowersInitialState,
   router: { location: history.location, action: "PUSH" },
 };
 

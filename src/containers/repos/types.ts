@@ -27,7 +27,7 @@ export interface UserInfo {
   private: boolean;
   owner: Owner;
   html_url: string;
-  description?: any;
+  description: any;
   fork: boolean;
   url: string;
   forks_url: string;
